@@ -62,7 +62,7 @@ int main(void)
         for(i = 0; i < N; i++)
             for(j = 0; j < N; j++)
                 sol[k][i][j] = map[k][i][j];
-    /*
+
     //map1
     printf("-----------MAP1-----------\n\n");
     x = 0; 
@@ -71,535 +71,535 @@ int main(void)
     u = -1;
     while(map[0][6][19] != '$' || map[0][7][19] != '$' || map[0][8][19] != '$' || map[0][6][20] != '$' || map[0][7][20] != '$' || map[0][8][20] != '$') { 
 
-    for(int i = 0; i < N; i++) 
-    for(int j = 0; j < N; j++) 
-    printf("%c", map[x][i][j]);
+        for(int i = 0; i < N; i++) 
+            for(int j = 0; j < N; j++) 
+                printf("%c", map[x][i][j]);
 
-    printf("(Command) ");
-    command = getch();
+        printf("(Command) ");
+        command = getch();
 
-    if(command == 'h' || command == 'l' || command == 'k' || command == 'j') {
-    }
-    else
-    printf("%c", command);
+        if(command == 'h' || command == 'l' || command == 'k' || command == 'j') {
+        }
+        else
+            printf("%c", command);
 
-    printf("\n\n");
+        printf("\n\n");
 
-    switch(command) {
-    case 'h': //left
-    if(map[x][y][z - 1] != '#') {
-    if(map[x][y][z - 1] == '$') {
-    if(map[x][y][z - 2] != '$' && map[x][y][z - 2] != '#') {
-    save_move(map, un, x, &u);
-    left_both(map, &x, &y, &z);
-    }
-    }
-    else {
-    save_move(map, un, x, &u);
-    left(map, &x, &y, &z);
-    }
-    }
+        switch(command) {
+            case 'h': //left
+                if(map[x][y][z - 1] != '#') {
+                    if(map[x][y][z - 1] == '$') {
+                        if(map[x][y][z - 2] != '$' && map[x][y][z - 2] != '#') {
+                            save_move(map, un, x, &u);
+                            left_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        left(map, &x, &y, &z);
+                    }
+                }
 
-    setO(map, sol, 0, 6, 9, 19, 21);
-    break;
+                setO(map, sol, 0, 6, 9, 19, 21);
+                break;
 
-    case 'l': //right
-    if(map[x][y][z + 1] != '#') {
-    if(map[x][y][z + 1] == '$') {
-    if(map[x][y][z + 2] != '$' && map[x][y][z + 2] != '#') {
-    save_move(map, un, x, &u);
-    right_both(map, &x, &y, &z);
-    }
-    else if(map[x][y][z + 2] == 'O') {
-    save_move(map, un, x, &u);
-    right_both(map, &x, &y, &z);
-    map[x][y][z + 2] = 'O';
-    }
-    }
-    else  {
-    save_move(map, un, x, &u);
-    right(map, &x, &y, &z);
-    }
-    }
+            case 'l': //right
+                if(map[x][y][z + 1] != '#') {
+                    if(map[x][y][z + 1] == '$') {
+                        if(map[x][y][z + 2] != '$' && map[x][y][z + 2] != '#') {
+                            save_move(map, un, x, &u);
+                            right_both(map, &x, &y, &z);
+                        }
+                        else if(map[x][y][z + 2] == 'O') {
+                            save_move(map, un, x, &u);
+                            right_both(map, &x, &y, &z);
+                            map[x][y][z + 2] = 'O';
+                        }
+                    }
+                    else  {
+                        save_move(map, un, x, &u);
+                        right(map, &x, &y, &z);
+                    }
+                }
 
-    setO(map, sol, 0, 6, 9, 19, 21);
-    break;
+                setO(map, sol, 0, 6, 9, 19, 21);
+                break;
 
-    case 'k': //up
-    if(map[x][y - 1][z] != '#') {
-    if(map[x][y - 1][z] == '$') {
-    if(map[x][y - 2][z] != '$' && map[x][y - 2][z] != '#') {
-    save_move(map, un, x, &u);
-    up_both(map, &x, &y, &z);
-    }
-    }
-    else {
-        save_move(map, un, x, &u);
-        up(map, &x, &y, &z);
-    }
-}
+            case 'k': //up
+                if(map[x][y - 1][z] != '#') {
+                    if(map[x][y - 1][z] == '$') {
+                        if(map[x][y - 2][z] != '$' && map[x][y - 2][z] != '#') {
+                            save_move(map, un, x, &u);
+                            up_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        up(map, &x, &y, &z);
+                    }
+                }
 
-setO(map, sol, 0, 6, 9, 19, 21);
-break;
+                setO(map, sol, 0, 6, 9, 19, 21);
+                break;
 
-case 'j': //down
-if(map[x][y + 1][z] != '#') {
-    if(map[x][y + 1][z] == '$') {
-        if(map[x][y + 2][z] != '$' && map[x][y + 2][z] != '#') {
-            save_move(map, un, x, &u);
-            down_both(map, &x, &y, &z);
+            case 'j': //down
+                if(map[x][y + 1][z] != '#') {
+                    if(map[x][y + 1][z] == '$') {
+                        if(map[x][y + 2][z] != '$' && map[x][y + 2][z] != '#') {
+                            save_move(map, un, x, &u);
+                            down_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        down(map, &x, &y, &z);
+                    }
+                }
+
+                setO(map, sol, 0, 6, 9, 19, 21);
+                break;
+
+            case 'u': //undo
+                if(u > -1)
+                    undo(map, un, x, &y, &z, &u);
+                break;
+        } 
+    }
+    printf("--------------------------\n\n");
+
+    //map2
+    printf("-----------MAP2-----------\n\n");
+    x = 1;
+    y = 5;
+    z = 7;
+    u = -1;
+    for(k = 0; k < 5; k++)
+        for(i = 0; i < N; i++)
+            for(j = 0; j < N; j++)
+                un[k][i][j] = '\0';
+    while(map[x][2][1] != '$' || map[x][2][2] != '$' || map[x][3][1] != '$' || map[x][3][2] != '$' || map[x][4][1] != '$' || map[x][4][2] != '$' || map[x][5][1] != '$' || map[x][5][2] != '$' || map[x][6][1] != '$' || map[x][6][2] != '$') {
+
+        for(i = 1; i< N; i++)
+            for(j = 0; j < N; j++)
+                printf("%c", map[x][i][j]);
+
+        printf("(Command) ");
+        command = getch();
+        if(command == 'h' || command == 'l' || command =='k' || command == 'j') {
+        }
+        else
+            printf("%c", command);
+
+        printf("\n\n");
+
+        switch(command) {
+            case 'h': //left
+                if(map[x][y][z - 1] != '#') {
+                    if(map[x][y][z - 1] == '$') {
+                        if(map[x][y][z - 2] != '$' && map[x][y][z - 2] != '#') {
+                            save_move(map, un, x, &u);
+                            left_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        left(map, &x, &y, &z);
+                    }
+                }
+
+                setO(map, sol, 1, 2, 7, 1, 3);
+                break;
+
+            case 'l': //right
+                if(map[x][y][z + 1] != '#') {
+                    if(map[x][y][z + 1] == '$') {
+                        if(map[x][y][z + 2] != '$' && map[x][y][z + 2] != '#') {
+                            save_move(map, un, x, &u);
+                            right_both(map, &x, &y, &z);
+                        }
+                        else if(map[x][y][z + 2] == 'O') {
+                            save_move(map, un, x, &u);
+                            right_both(map, &x, &y, &z);
+                            map[x][y][z + 2] = 'O';
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        right(map, &x, &y, &z);
+                    }
+                }
+
+                setO(map, sol, 1, 2, 7, 1, 3);
+                break;
+
+            case 'k': //up
+                if(map[x][y - 1][z] != '#') {
+                    if(map[x][y - 1][z] == '$') {
+                        if(map[x][y - 2][z] != '$' && map[x][y - 2][z] != '#') {
+                            save_move(map, un, x, &u);
+                            up_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        up(map, &x, &y, &z);
+                    }
+                }
+
+                setO(map, sol, 1, 2, 7, 1, 3);
+                break;
+
+            case 'j': //down
+                if(map[x][y + 1][z] != '#') {
+                    if(map[x][y + 1][z] == '$') {
+                        if(map[x][y + 2][z] != '$' && map[x][y + 2][z] != '#') {
+                            save_move(map, un, x, &u);
+                            down_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        down(map, &x, &y, &z);
+
+                    }
+                }
+
+                setO(map, sol, 1, 2, 7, 1, 3);
+                break;
+
+            case 'u': //undo
+                if(u > -1)
+                    undo(map, un, x, &y, &z, &u);
+                break;
+        }
+    } 
+    printf("--------------------------\n\n");
+
+    //map3
+    printf("-----------MAP3-----------\n\n");
+    x = 2;
+    y = 2;
+    z = 14;
+    u = -1;
+    for(k = 0; k < 5; k++)
+        for(i = 0; i < N; i++)
+            for(j = 0; j < N; j++)
+                un[k][i][j] = '\0';
+    while(map[x][7][1] != '$' || map[x][7][2] != '$' || map[x][7][3] != '$' || map[x][7][4] != '$' || map[x][8][2] != '$' || map[x][8][3] != '$' || map[x][8][4] != '$' || map[x][9][1] != '$' || map[x][9][2] != '$' || map[x][9][3] != '$' || map[x][9][4] != '$') {
+
+        for(i = 1; i < N; i++)
+            for(j = 0; j < N; j++)
+                printf("%c", map[x][i][j]);
+
+        printf("(Command) ");
+        command = getch();
+        if(command == 'h' || command == 'l' || command =='k' || command == 'j') {
+        }
+        else
+            printf("%c", command);
+
+        printf("\n\n");
+
+        switch(command) {
+            case 'h': //left
+                if(map[x][y][z - 1] != '#') {
+                    if(map[x][y][z - 1] == '$') {
+                        if(map[x][y][z - 2] != '$' && map[x][y][z - 2] != '#') {
+                            save_move(map, un, x, &u);
+                            left_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        left(map, &x, &y, &z);
+                    }
+                }
+
+                setO(map, sol, 2, 7, 10, 1, 5);
+                break;
+
+            case 'l': //right
+                if(map[x][y][z + 1] != '#') {
+                    if(map[x][y][z + 1] == '$') {
+                        if(map[x][y][z + 2] != '$' && map[x][y][z + 2] != '#') {
+                            save_move(map, un, x, &u);
+                            right_both(map, &x, &y, &z);
+                        }
+                        else if(map[x][y][z + 2] == 'O') {
+                            save_move(map, un, x, &u);
+                            right_both(map, &x, &y, &z);
+                            map[x][y][z + 2] = 'O';
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        right(map, &x, &y, &z);
+                    }
+                }
+
+                setO(map, sol, 2, 7, 10, 1, 5);
+                break;
+
+            case 'k': //up
+                if(map[x][y - 1][z] != '#') {
+                    if(map[x][y - 1][z] == '$') {
+                        if(map[x][y - 2][z] != '$' && map[x][y - 2][z] != '#') {
+                            save_move(map, un, x, &u);
+                            up_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        up(map, &x, &y, &z);
+                    }
+                }
+
+                setO(map, sol, 2, 7, 10, 1, 5);
+                break;
+
+            case 'j': //down
+                if(map[x][y + 1][z] != '#') {
+                    if(map[x][y + 1][z] == '$') {
+                        if(map[x][y + 2][z] != '$' && map[x][y + 2][z] != '#') {
+                            save_move(map, un, x, &u);
+                            down_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        down(map, &x, &y, &z);
+                    }
+                }
+
+                setO(map, sol, 2, 7, 10, 1, 5);
+                break;
+
+            case 'u': //undo
+                if(u > -1)
+                    undo(map, un, x, &y, &z, &u);
+                break;
         }
     }
-    else {
-        save_move(map, un, x, &u);
-        down(map, &x, &y, &z);
+    printf("--------------------------\n\n");
+
+    //map4
+    printf("-----------MAP4-----------\n\n");
+    x = 3; 
+    y = 11;
+    z = 8;
+    u = -1;
+    for(k = 0; k < 5; k++)
+        for(i = 0; i < N; i++)
+            for(j = 0; j < N; j++)
+                un[k][i][j] = '\0';
+    while(map[x][2][17] != '$' || map[x][2][18] != '$' || map[x][2][19] != '$' || map[x][2][20] != '$' || map[x][3][17] != '$' || map[x][3][18] != '$' || map[x][3][19] != '$' || map[x][3][20] != '$' || map[x][4][17] != '$' || map[x][4][18] != '$' || map[x][4][19] != '$' || map[x][4][20] != '$' || map[x][5][17] != '$' || map[x][5][18] != '$' || map[x][5][19] != '$' || map[x][5][20] != '$' || map[x][6][17] != '$' || map[x][6][18] != '$' || map[x][6][19] != '$' || map[x][6][20] != '$') {
+        for(i = 1; i < N; i++)
+            for(j = 0; j < N; j++)
+                printf("%c", map[x][i][j]);
+
+        printf("(Command) ");
+        command = getch();
+        if(command == 'h' || command == 'l' || command =='k' || command == 'j') {
+        }
+        else
+            printf("%c", command);
+        printf("\n\n");
+
+
+        switch(command) {
+            case 'h': //left
+                if(map[x][y][z - 1] != '#') {
+                    if(map[x][y][z - 1] == '$') {
+                        if(map[x][y][z - 2] != '$' && map[x][y][z - 2] != '#') {
+                            save_move(map, un, x, &u);
+                            left_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        left(map, &x, &y, &z);
+                    }
+                }
+
+                setO(map, sol, 3, 2, 7, 17, 21);
+                break;
+
+            case 'l': //right
+                if(map[x][y][z + 1] != '#') {
+                    if(map[x][y][z + 1] == '$') {
+                        if(map[x][y][z + 2] != '$' && map[x][y][z + 2] != '#') {
+                            save_move(map, un, x, &u);
+                            right_both(map, &x, &y, &z);
+                        }
+                        else if(map[x][y][z + 2] == 'O') {
+                            save_move(map, un, x, &u);
+                            right_both(map, &x, &y, &z);
+                            map[x][y][z + 2] = 'O';
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        right(map, &x, &y, &z);
+                    }
+                }
+
+                setO(map, sol, 3, 2, 7, 17, 21);
+                break;
+
+            case 'k': //up
+                if(map[x][y - 1][z] != '#') {
+                    if(map[x][y - 1][z] == '$') {
+                        if(map[x][y - 2][z] != '$' && map[x][y - 2][z] != '#') {
+                            save_move(map, un, x, &u);
+                            up_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        up(map, &x, &y, &z);
+                    }
+                }
+
+                setO(map, sol, 3, 2, 7, 17, 21);
+                break;
+
+            case 'j': //down
+                if(map[x][y + 1][z] != '#') {
+                    if(map[x][y + 1][z] == '$') {
+                        if(map[x][y + 2][z] != '$' && map[x][y + 2][z] != '#') {
+                            save_move(map, un, x, &u);
+                            down_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
+                        save_move(map, un, x, &u);
+                        down(map, &x, &y, &z);
+                    }
+                }
+
+                setO(map, sol, 3, 2, 7, 17, 21);
+                break;
+
+            case 'u': //undo
+                if(u > -1)
+                    undo(map, un, x, &y, &z, &u);
+                break;
+        }
     }
-}
+    printf("--------------------------\n\n");
 
-setO(map, sol, 0, 6, 9, 19, 21);
-break;
+    //map5
+    printf("-----------MAP5-----------\n\n");
+    x = 4;
+    y = 8; 
+    z = 14;
+    u = -1;
+    for(k = 0; k < 5; k++)
+        for(i = 0; i < N; i++)
+            for(j = 0; j < N; j++)
+                un[k][i][j] = '\0';
+    while(map[x][6][1] != '$' || map[x][6][2] != '$' || map[x][6][3] != '$' || map[x][6][4] != '$' || map[x][7][1] != '$' || map[x][7][2] != '$' || map[x][7][4] != '$' || map[x][8][1] != '$' || map[x][8][2] != '$' || map[x][8][3] != '$' || map[x][8][4] != '$' || map[x][7][3] != '$') {
 
-case 'u': //undo
-if(u > -1)
-    undo(map, un, x, &y, &z, &u);
-    break;
-    } 
-}
-printf("--------------------------\n\n");
-*/
-//map2
-printf("-----------MAP2-----------\n\n");
-x = 1;
-y = 5;
-z = 7;
-u = -1;
-for(k = 0; k < 5; k++)
-for(i = 0; i < N; i++)
-for(j = 0; j < N; j++)
-un[k][i][j] = '\0';
-while(map[x][2][1] != '$' || map[x][2][2] != '$' || map[x][3][1] != '$' || map[x][3][2] != '$' || map[x][4][1] != '$' || map[x][4][2] != '$' || map[x][5][1] != '$' || map[x][5][2] != '$' || map[x][6][1] != '$' || map[x][6][2] != '$') {
+        for(i = 1; i < N; i++)
+            for(j = 0; j < N; j++)
+                printf("%c", map[x][i][j]);
 
-    for(i = 1; i< N; i++)
-        for(j = 0; j < N; j++)
-            printf("%c", map[x][i][j]);
+        printf("(Command) ");
+        command = getch();
+        if(command == 'h' || command == 'l' || command =='k' || command == 'j') {
+        }
+        else
+            printf("%c", command);
 
-    printf("(Command) ");
-    command = getch();
-    if(command == 'h' || command == 'l' || command =='k' || command == 'j') {
-    }
-    else
-        printf("%c", command);
+        printf("\n\n");
 
-    printf("\n\n");
-
-    switch(command) {
-        case 'h': //left
-            if(map[x][y][z - 1] != '#') {
-                if(map[x][y][z - 1] == '$') {
-                    if(map[x][y][z - 2] != '$' && map[x][y][z - 2] != '#') {
+        switch(command) {
+            case 'h': //left
+                if(map[x][y][z - 1] != '#') {
+                    if(map[x][y][z - 1] == '$') {
+                        if(map[x][y][z - 2] != '$' && map[x][y][z - 2] != '#') {
+                            save_move(map, un, x, &u);
+                            left_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
                         save_move(map, un, x, &u);
-                        left_both(map, &x, &y, &z);
+                        left(map, &x, &y, &z);
                     }
                 }
-                else {
-                    save_move(map, un, x, &u);
-                    left(map, &x, &y, &z);
-                }
-            }
 
-            setO(map, sol, 1, 2, 7, 1, 3);
-            break;
+                setO(map, sol, 4, 6, 9, 1, 5);
+                break;
 
-        case 'l': //right
-            if(map[x][y][z + 1] != '#') {
-                if(map[x][y][z + 1] == '$') {
-                    if(map[x][y][z + 2] != '$' && map[x][y][z + 2] != '#') {
-                        save_move(map, un, x, &u);
-                        right_both(map, &x, &y, &z);
+            case 'l': //right
+                if(map[x][y][z + 1] != '#') {
+                    if(map[x][y][z + 1] == '$') {
+                        if(map[x][y][z + 2] != '$' && map[x][y][z + 2] != '#') {
+                            save_move(map, un, x, &u);
+                            right_both(map, &x, &y, &z);
+                        }
+                        else if(map[x][y][z + 2] == 'O') {
+                            save_move(map, un, x, &u);
+                            right_both(map, &x, &y, &z);
+                            map[x][y][z + 2] = 'O';
+                        }
                     }
-                    else if(map[x][y][z + 2] == 'O') {
+                    else {
                         save_move(map, un, x, &u);
-                        right_both(map, &x, &y, &z);
-                        map[x][y][z + 2] = 'O';
-                    }
-                }
-                else {
-                    save_move(map, un, x, &u);
-                    right(map, &x, &y, &z);
-                }
-            }
-
-            setO(map, sol, 1, 2, 7, 1, 3);
-            break;
-
-        case 'k': //up
-            if(map[x][y - 1][z] != '#') {
-                if(map[x][y - 1][z] == '$') {
-                    if(map[x][y - 2][z] != '$' && map[x][y - 2][z] != '#') {
-                        save_move(map, un, x, &u);
-                        up_both(map, &x, &y, &z);
+                        right(map, &x, &y, &z);
                     }
                 }
-                else {
-                    save_move(map, un, x, &u);
-                    up(map, &x, &y, &z);
-                }
-            }
 
-            setO(map, sol, 1, 2, 7, 1, 3);
-            break;
+                setO(map, sol, 4, 6, 9, 1, 5);
+                break;
 
-        case 'j': //down
-            if(map[x][y + 1][z] != '#') {
-                if(map[x][y + 1][z] == '$') {
-                    if(map[x][y + 2][z] != '$' && map[x][y + 2][z] != '#') {
+            case 'k': //up
+                if(map[x][y - 1][z] != '#') {
+                    if(map[x][y - 1][z] == '$') {
+                        if(map[x][y - 2][z] != '$' && map[x][y - 2][z] != '#') {
+                            save_move(map, un, x, &u);
+                            up_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
                         save_move(map, un, x, &u);
-                        down_both(map, &x, &y, &z);
+                        up(map, &x, &y, &z);
                     }
                 }
-                else {
-                    save_move(map, un, x, &u);
-                    down(map, &x, &y, &z);
 
-                }
-            }
+                setO(map, sol, 4, 6, 9, 1, 5);
+                break;
 
-            setO(map, sol, 1, 2, 7, 1, 3);
-            break;
-
-        case 'u': //undo
-            if(u > -1)
-                undo(map, un, x, &y, &z, &u);
-            break;
-    }
-} 
-printf("--------------------------\n\n");
-
-//map3
-printf("-----------MAP3-----------\n\n");
-x = 2;
-y = 2;
-z = 14;
-u = -1;
-for(k = 0; k < 5; k++)
-for(i = 0; i < N; i++)
-for(j = 0; j < N; j++)
-un[k][i][j] = '\0';
-while(map[x][7][1] != '$' || map[x][7][2] != '$' || map[x][7][3] != '$' || map[x][7][4] != '$' || map[x][8][2] != '$' || map[x][8][3] != '$' || map[x][8][4] != '$' || map[x][9][1] != '$' || map[x][9][2] != '$' || map[x][9][3] != '$' || map[x][9][4] != '$') {
-
-    for(i = 1; i < N; i++)
-        for(j = 0; j < N; j++)
-            printf("%c", map[x][i][j]);
-
-    printf("(Command) ");
-    command = getch();
-    if(command == 'h' || command == 'l' || command =='k' || command == 'j') {
-    }
-    else
-        printf("%c", command);
-
-    printf("\n\n");
-
-    switch(command) {
-        case 'h': //left
-            if(map[x][y][z - 1] != '#') {
-                if(map[x][y][z - 1] == '$') {
-                    if(map[x][y][z - 2] != '$' && map[x][y][z - 2] != '#') {
+            case 'j': //down
+                if(map[x][y + 1][z] != '#') {
+                    if(map[x][y + 1][z] == '$') {
+                        if(map[x][y + 2][z] != '$' && map[x][y + 2][z] != '#') {
+                            save_move(map, un, x, &u);
+                            down_both(map, &x, &y, &z);
+                        }
+                    }
+                    else {
                         save_move(map, un, x, &u);
-                        left_both(map, &x, &y, &z);
+                        down(map, &x, &y, &z);
                     }
                 }
-                else {
-                    save_move(map, un, x, &u);
-                    left(map, &x, &y, &z);
-                }
-            }
 
-            setO(map, sol, 2, 7, 10, 1, 5);
-            break;
+                setO(map, sol, 4, 6, 9, 1, 5);
+                break;
 
-        case 'l': //right
-            if(map[x][y][z + 1] != '#') {
-                if(map[x][y][z + 1] == '$') {
-                    if(map[x][y][z + 2] != '$' && map[x][y][z + 2] != '#') {
-                        save_move(map, un, x, &u);
-                        right_both(map, &x, &y, &z);
-                    }
-                    else if(map[x][y][z + 2] == 'O') {
-                        save_move(map, un, x, &u);
-                        right_both(map, &x, &y, &z);
-                        map[x][y][z + 2] = 'O';
-                    }
-                }
-                else {
-                    save_move(map, un, x, &u);
-                    right(map, &x, &y, &z);
-                }
-            }
+            case 'u': //undo
+                if(u > -1)
+                    undo(map, un, x, &y, &z, &u);
+                break;
+        }
 
-            setO(map, sol, 2, 7, 10, 1, 5);
-            break;
-
-        case 'k': //up
-            if(map[x][y - 1][z] != '#') {
-                if(map[x][y - 1][z] == '$') {
-                    if(map[x][y - 2][z] != '$' && map[x][y - 2][z] != '#') {
-                        save_move(map, un, x, &u);
-                        up_both(map, &x, &y, &z);
-                    }
-                }
-                else {
-                    save_move(map, un, x, &u);
-                    up(map, &x, &y, &z);
-                }
-            }
-
-            setO(map, sol, 2, 7, 10, 1, 5);
-            break;
-
-        case 'j': //down
-            if(map[x][y + 1][z] != '#') {
-                if(map[x][y + 1][z] == '$') {
-                    if(map[x][y + 2][z] != '$' && map[x][y + 2][z] != '#') {
-                        save_move(map, un, x, &u);
-                        down_both(map, &x, &y, &z);
-                    }
-                }
-                else {
-                    save_move(map, un, x, &u);
-                    down(map, &x, &y, &z);
-                }
-            }
-
-            setO(map, sol, 2, 7, 10, 1, 5);
-            break;
-
-        case 'u': //undo
-            if(u > -1)
-                undo(map, un, x, &y, &z, &u);
-            break;
-    }
-}
-printf("--------------------------\n\n");
-
-//map4
-printf("-----------MAP4-----------\n\n");
-x = 3; 
-y = 11;
-z = 8;
-u = -1;
-for(k = 0; k < 5; k++)
-for(i = 0; i < N; i++)
-for(j = 0; j < N; j++)
-un[k][i][j] = '\0';
-while(map[x][2][17] != '$' || map[x][2][18] != '$' || map[x][2][19] != '$' || map[x][2][20] != '$' || map[x][3][17] != '$' || map[x][3][18] != '$' || map[x][3][19] != '$' || map[x][3][20] != '$' || map[x][4][17] != '$' || map[x][4][18] != '$' || map[x][4][19] != '$' || map[x][4][20] != '$' || map[x][5][17] != '$' || map[x][5][18] != '$' || map[x][5][19] != '$' || map[x][5][20] != '$' || map[x][6][17] != '$' || map[x][6][18] != '$' || map[x][6][19] != '$' || map[x][6][20] != '$') {
-    for(i = 1; i < N; i++)
-        for(j = 0; j < N; j++)
-            printf("%c", map[x][i][j]);
-
-    printf("(Command) ");
-    command = getch();
-    if(command == 'h' || command == 'l' || command =='k' || command == 'j') {
-    }
-    else
-        printf("%c", command);
-    printf("\n\n");
-
-
-    switch(command) {
-        case 'h': //left
-            if(map[x][y][z - 1] != '#') {
-                if(map[x][y][z - 1] == '$') {
-                    if(map[x][y][z - 2] != '$' && map[x][y][z - 2] != '#') {
-                        save_move(map, un, x, &u);
-                        left_both(map, &x, &y, &z);
-                    }
-                }
-                else {
-                    save_move(map, un, x, &u);
-                    left(map, &x, &y, &z);
-                }
-            }
-
-            setO(map, sol, 3, 2, 7, 17, 21);
-            break;
-
-        case 'l': //right
-            if(map[x][y][z + 1] != '#') {
-                if(map[x][y][z + 1] == '$') {
-                    if(map[x][y][z + 2] != '$' && map[x][y][z + 2] != '#') {
-                        save_move(map, un, x, &u);
-                        right_both(map, &x, &y, &z);
-                    }
-                    else if(map[x][y][z + 2] == 'O') {
-                        save_move(map, un, x, &u);
-                        right_both(map, &x, &y, &z);
-                        map[x][y][z + 2] = 'O';
-                    }
-                }
-                else {
-                    save_move(map, un, x, &u);
-                    right(map, &x, &y, &z);
-                }
-            }
-
-            setO(map, sol, 3, 2, 7, 17, 21);
-            break;
-
-        case 'k': //up
-            if(map[x][y - 1][z] != '#') {
-                if(map[x][y - 1][z] == '$') {
-                    if(map[x][y - 2][z] != '$' && map[x][y - 2][z] != '#') {
-                        save_move(map, un, x, &u);
-                        up_both(map, &x, &y, &z);
-                    }
-                }
-                else {
-                    save_move(map, un, x, &u);
-                    up(map, &x, &y, &z);
-                }
-            }
-
-            setO(map, sol, 3, 2, 7, 17, 21);
-            break;
-
-        case 'j': //down
-            if(map[x][y + 1][z] != '#') {
-                if(map[x][y + 1][z] == '$') {
-                    if(map[x][y + 2][z] != '$' && map[x][y + 2][z] != '#') {
-                        save_move(map, un, x, &u);
-                        down_both(map, &x, &y, &z);
-                    }
-                }
-                else {
-                    save_move(map, un, x, &u);
-                    down(map, &x, &y, &z);
-                }
-            }
-
-            setO(map, sol, 3, 2, 7, 17, 21);
-            break;
-
-        case 'u': //undo
-            if(u > -1)
-                undo(map, un, x, &y, &z, &u);
-            break;
-    }
-}
-printf("--------------------------\n\n");
-
-//map5
-printf("-----------MAP5-----------\n\n");
-x = 4;
-y = 8; 
-z = 14;
-u = -1;
-for(k = 0; k < 5; k++)
-for(i = 0; i < N; i++)
-for(j = 0; j < N; j++)
-un[k][i][j] = '\0';
-while(map[x][6][1] != '$' || map[x][6][2] != '$' || map[x][6][3] != '$' || map[x][6][4] != '$' || map[x][7][1] != '$' || map[x][7][2] != '$' || map[x][7][4] != '$' || map[x][8][1] != '$' || map[x][8][2] != '$' || map[x][8][3] != '$' || map[x][8][4] != '$' || map[x][7][3] != '$') {
-
-    for(i = 1; i < N; i++)
-        for(j = 0; j < N; j++)
-            printf("%c", map[x][i][j]);
-
-    printf("(Command) ");
-    command = getch();
-    if(command == 'h' || command == 'l' || command =='k' || command == 'j') {
-    }
-    else
-        printf("%c", command);
-
-    printf("\n\n");
-
-    switch(command) {
-        case 'h': //left
-            if(map[x][y][z - 1] != '#') {
-                if(map[x][y][z - 1] == '$') {
-                    if(map[x][y][z - 2] != '$' && map[x][y][z - 2] != '#') {
-                        save_move(map, un, x, &u);
-                        left_both(map, &x, &y, &z);
-                    }
-                }
-                else {
-                    save_move(map, un, x, &u);
-                    left(map, &x, &y, &z);
-                }
-            }
-
-            setO(map, sol, 4, 6, 9, 1, 5);
-            break;
-
-        case 'l': //right
-            if(map[x][y][z + 1] != '#') {
-                if(map[x][y][z + 1] == '$') {
-                    if(map[x][y][z + 2] != '$' && map[x][y][z + 2] != '#') {
-                        save_move(map, un, x, &u);
-                        right_both(map, &x, &y, &z);
-                    }
-                    else if(map[x][y][z + 2] == 'O') {
-                        save_move(map, un, x, &u);
-                        right_both(map, &x, &y, &z);
-                        map[x][y][z + 2] = 'O';
-                    }
-                }
-                else {
-                    save_move(map, un, x, &u);
-                    right(map, &x, &y, &z);
-                }
-            }
-
-            setO(map, sol, 4, 6, 9, 1, 5);
-            break;
-
-        case 'k': //up
-            if(map[x][y - 1][z] != '#') {
-                if(map[x][y - 1][z] == '$') {
-                    if(map[x][y - 2][z] != '$' && map[x][y - 2][z] != '#') {
-                        save_move(map, un, x, &u);
-                        up_both(map, &x, &y, &z);
-                    }
-                }
-                else {
-                    save_move(map, un, x, &u);
-                    up(map, &x, &y, &z);
-                }
-            }
-
-            setO(map, sol, 4, 6, 9, 1, 5);
-            break;
-
-        case 'j': //down
-            if(map[x][y + 1][z] != '#') {
-                if(map[x][y + 1][z] == '$') {
-                    if(map[x][y + 2][z] != '$' && map[x][y + 2][z] != '#') {
-                        save_move(map, un, x, &u);
-                        down_both(map, &x, &y, &z);
-                    }
-                }
-                else {
-                    save_move(map, un, x, &u);
-                    down(map, &x, &y, &z);
-                }
-            }
-
-            setO(map, sol, 4, 6, 9, 1, 5);
-            break;
-
-        case 'u': //undo
-            if(u > -1)
-                undo(map, un, x, &y, &z, &u);
-            break;
     }
 
-}
+    fclose(ifp);
 
-fclose(ifp);
+    printf("*****축하합니다! 모든 맵을 완수하셨습니다!*****\n");
 
-printf("*****축하합니다! 모든 맵을 완수하셨습니다!*****\n");
-
-return 0;
+    return 0;
 }
 
 void up(char map[][N][N], int *x, int *y, int *z) {
