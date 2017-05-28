@@ -165,6 +165,12 @@ int main(void)
                 break;
         } 
     }
+
+    for(int i = 0; i < N; i++)
+        for(int j = 0; j < N; j++)
+            printf("%c", map[x][i][j]);
+
+    printf("MAP1을 성공하셨습니다!\n");
     printf("--------------------------\n\n");
 
     //map2
@@ -273,6 +279,11 @@ int main(void)
                 break;
         }
     } 
+    for(int i = 0; i < N; i++)
+        for(int j = 0; j < N; j++)
+            printf("%c", map[x][i][j]);
+
+    printf("MAP2을 성공하셨습니다!\n");
     printf("--------------------------\n\n");
 
     //map3
@@ -380,6 +391,11 @@ int main(void)
                 break;
         }
     }
+    for(int i = 0; i < N; i++)
+        for(int j = 0; j < N; j++)
+            printf("%c", map[x][i][j]);
+
+    printf("MAP3을 성공하셨습니다!\n");
     printf("--------------------------\n\n");
 
     //map4
@@ -486,6 +502,12 @@ int main(void)
                 break;
         }
     }
+    for(int i = 0; i < N; i++)
+        for(int j = 0; j < N; j++)
+            printf("%c", map[x][i][j]);
+
+    printf("MAP4을 성공하셨습니다!\n");
+
     printf("--------------------------\n\n");
 
     //map5
@@ -594,6 +616,9 @@ int main(void)
         }
 
     }
+    for(int i = 0; i < N; i++)
+        for(int j = 0; j < N; j++)
+            printf("%c", map[x][i][j]);
 
     fclose(ifp);
 
