@@ -188,7 +188,6 @@ int main(void)
         for(i = 1; i< N; i++)
             for(j = 0; j < N; j++)
                 printf("%c", map[x][i][j]);
-        printf("x = %d y = %d z = %d\n", x, y, z);
 
         printf("(Command) ");
         command = getch();
