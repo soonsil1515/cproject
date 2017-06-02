@@ -28,6 +28,7 @@ int main(void)
     char map[5][N][N] = {'\0'};
     char sol[5][N][N] = {'\0'};
     char un[5][N][N] = {'\0'};
+	char name[20]; 
 
     FILE *ifp;
     char c, command;
@@ -70,9 +71,14 @@ int main(void)
             for(j = 0; j < N; j++)
                 sol[k][i][j] = map[k][i][j];
 
+	printf("Start....\n");  
+	printf("Input name : ");
+	scanf("%s",&name);
+
     //map1
     printf("-----------MAP1-----------\n\n");
-    x = 0; 
+   printf("\tHello %s\n\n",name);
+   	x = 0; 
     y = 8;
     z = 12;
     u = -1;
@@ -195,6 +201,7 @@ int main(void)
 
     //map2
     printf("-----------MAP2-----------\n\n");
+   printf("\tHello %s\n\n",name);
     x = 1;
     y = 5;
     z = 7;
@@ -320,6 +327,7 @@ int main(void)
 
     //map3
     printf("-----------MAP3-----------\n\n");
+   printf("\tHello %s\n\n",name);
     x = 2;
     y = 2;
     z = 14;
@@ -444,6 +452,7 @@ int main(void)
 
     //map4
     printf("-----------MAP4-----------\n\n");
+   printf("\tHello %s\n\n",name);
     x = 3; 
     y = 11;
     z = 8;
@@ -569,6 +578,7 @@ int main(void)
 
     //map5
     printf("-----------MAP5-----------\n\n");
+   printf("\tHello %s\n\n",name);
     x = 4;
     y = 8; 
     z = 14;
