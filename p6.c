@@ -20,6 +20,7 @@ void pull(char[][N][N]); //5개의 저장공간이 가득 찼을 시 공간의 �
 void undo(char[][N][N], char [][N][N]); //되돌리기 기능의 함수
 int x, y, z, u; //@의 위치를 나타내기 위한 전역변수
 FILE *sfp; // file을 save하기 위한 포인터 변수
+char save_un[5][N][N];
 
 int main(void)
 {
@@ -27,10 +28,11 @@ int main(void)
     char map[5][N][N] = {'\0'};
     char sol[5][N][N] = {'\0'};
     char un[5][N][N] = {'\0'};
+	char name[20]; 
 
     FILE *ifp;
     char c, command;
-    ifp = fopen("C:\\cygwin64\\home\\이송희\\cpro\\map.txt","r");
+    ifp = fopen("C:\\cygwin64\\home\\USER\\map.txt","r");
 
     if(ifp==NULL)printf("no");
     for(k=0;k<5;k++)
@@ -69,20 +71,31 @@ int main(void)
             for(j = 0; j < N; j++)
                 sol[k][i][j] = map[k][i][j];
 
+	printf("Start....\n");  
+	printf("Input name : ");
+	scanf("%[^\n]s",&name);
+
     //map1
     printf("-----------MAP1-----------\n\n");
-    x = 0; 
+   printf("    Hello %s\n\n",name);
+   	x = 0; 
     y = 8;
     z = 12;
     u = -1;
     while(map[0][6][19] != '$' || map[0][7][19] != '$' || map[0][8][19] != '$' || map[0][6][20] != '$' || map[0][7][20] != '$' || map[0][8][20] != '$') { 
+
         for(int i = 0; i < N; i++) 
             for(int j = 0; j < N; j++) 
                 printf("%c", map[x][i][j]);
 
         printf("(Command) ");
-        command = getch();
+ 		command = getch();
 
+ 		if(command == 13)
+		{
+			command = 0;
+			fflush(command);
+		}
         if(command == 'h' || command == 'l' || command == 'k' || command == 'j') {
         }
         else
@@ -193,6 +206,7 @@ int main(void)
 
     //map2
     printf("-----------MAP2-----------\n\n");
+   printf("\tHello %s\n\n",name);
     x = 1;
     y = 5;
     z = 7;
@@ -318,6 +332,7 @@ int main(void)
 
     //map3
     printf("-----------MAP3-----------\n\n");
+   printf("\tHello %s\n\n",name);
     x = 2;
     y = 2;
     z = 14;
@@ -442,6 +457,7 @@ int main(void)
 
     //map4
     printf("-----------MAP4-----------\n\n");
+   printf("\tHello %s\n\n",name);
     x = 3; 
     y = 11;
     z = 8;
@@ -567,6 +583,7 @@ int main(void)
 
     //map5
     printf("-----------MAP5-----------\n\n");
+   printf("\tHello %s\n\n",name);
     x = 4;
     y = 8; 
     z = 14;
@@ -809,10 +826,6 @@ void save_file(char map[][N][N],char un[][N][N]){
         for(j = 0; j < N; j++)
             for(k = 0; k < N; k++)
                 fprintf(sfp,"%c", un[i][j][k]);
-    fprintf(sfp, "*");
-
-    fprintf(sfp, "%d", u);
-   
     fclose(sfp);	
 }
 void load_file(char map[][N][N],char un[][N][N]){
@@ -846,25 +859,11 @@ void load_file(char map[][N][N],char un[][N][N]){
     }
     fgetc(sfp);
 
-    for(i=0;i < 5;i++) {
-        for(j=0;j<N;j++) {
+    for(i=0;i < 5;i++)
+        for(j=0;j<N;j++)
             for(k = 0; k < N; k++) {
-                fscanf(sfp, "%c", &temp);
-                if(temp != '*') {
-                    un[i][j][k] = temp;
-                }
-                else break;
+               fscanf(sfp,"%c",&un[i][j][k]);
             }
-            if(temp == '*') break;
-        }
-        if(temp == '*') {
-            un[i][j][k] = '\0';
-            break;
-        }
-    }
-    fgetc(sfp);
-
-    fscanf(sfp, "%d", &u);
 
     fclose(sfp);
 
