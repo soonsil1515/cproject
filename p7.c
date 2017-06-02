@@ -177,7 +177,7 @@ int main(void)
                 break;
             case 'f' : //file load
                 load_file(map,un);
-                //setO(map, sol, 6, 9, 19, 21);
+                setO(map, sol, 6, 9, 19, 21);
                 break;
                 
             case 'e': //game exit and save game
