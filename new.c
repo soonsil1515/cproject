@@ -27,7 +27,7 @@ int main(void)
     char map[5][N][N] = {'\0'};
     char sol[5][N][N] = {'\0'};
     char un[5][N][N] = {'\0'};
-	 char name[20];
+    char name[20];
 
     FILE *ifp;
     char c, command;
@@ -70,14 +70,16 @@ int main(void)
             for(j = 0; j < N; j++)
                 sol[k][i][j] = map[k][i][j];
 
-	  printf("Start....\n");
-      printf("Input name : ");
-      scanf("%[^\n]s",&name);
+    printf("Start....\n");
+    printf("Input name : ");
+    scanf("%s", name);
+    getchar();
+    printf("\n");
 
     //map1
     printf("-----------MAP1-----------\n\n");
-	 printf("    Hello %s\n\n",name);
- 	x = 0; 
+    printf("    Hello %s\n\n",name);
+    x = 0; 
     y = 8;
     z = 12;
     u = -1;
@@ -183,7 +185,7 @@ int main(void)
                 load_file(map,un);
                 setO(map, sol, 6, 9, 19, 21);
                 break;
-                
+
             case 'e': //game exit and save game
                 save_file(map, un);
                 return 0;
@@ -199,7 +201,7 @@ int main(void)
 
     //map2
     printf("-----------MAP2-----------\n\n");
-	 printf("    Hello %s\n\n",name);
+    printf("    Hello %s\n\n",name);
     x = 1;
     y = 5;
     z = 7;
@@ -313,9 +315,12 @@ int main(void)
                 setO(map, sol, 2, 7, 1, 3);
                 break;
 
-
+            case 'e': //game exit and save game
+                save_file(map, un);
+                return 0;
         }
     } 
+
     for(int i = 0; i < N; i++)
         for(int j = 0; j < N; j++)
             printf("%c", map[x][i][j]);
@@ -325,7 +330,7 @@ int main(void)
 
     //map3
     printf("-----------MAP3-----------\n\n");
-	 printf("    Hello %s\n\n",name);
+    printf("    Hello %s\n\n",name);
     x = 2;
     y = 2;
     z = 14;
@@ -438,9 +443,12 @@ int main(void)
                 setO(map, sol, 7, 10, 1, 5);
                 break;
 
-
+            case 'e':
+                save_file(map, un);
+                return 0;
         }
     }
+
     for(int i = 0; i < N; i++)
         for(int j = 0; j < N; j++)
             printf("%c", map[x][i][j]);
@@ -450,7 +458,7 @@ int main(void)
 
     //map4
     printf("-----------MAP4-----------\n\n");
-	 printf("    Hello %s\n\n",name);
+    printf("    Hello %s\n\n",name);
     x = 3; 
     y = 11;
     z = 8;
@@ -562,10 +570,12 @@ int main(void)
                 setO(map, sol, 2, 7, 17, 21);
                 break;
 
-
-
+            case 'e': //game exit and save game
+                save_file(map, un);
+                return 0;
         }
     }
+
     for(int i = 0; i < N; i++)
         for(int j = 0; j < N; j++)
             printf("%c", map[x][i][j]);
@@ -576,7 +586,7 @@ int main(void)
 
     //map5
     printf("-----------MAP5-----------\n\n");
-	 printf("    Hello %s\n\n",name);
+    printf("    Hello %s\n\n",name);
     x = 4;
     y = 8; 
     z = 14;
@@ -689,10 +699,12 @@ int main(void)
                 setO(map, sol, 6, 9, 1, 5);
                 break;
 
-
+            case 'e': //game exit and save game
+                save_file(map, un);
+                return 0;
         }
-
     }
+
     for(int i = 0; i < N; i++)
         for(int j = 0; j < N; j++)
             printf("%c", map[x][i][j]);
@@ -822,7 +834,7 @@ void save_file(char map[][N][N],char un[][N][N]){
     fprintf(sfp, "*");
 
     fprintf(sfp, "%d", u);
-   
+
     fclose(sfp);	
 }
 void load_file(char map[][N][N],char un[][N][N]){
