@@ -133,7 +133,8 @@ int main(void)
         //강제종료
 
     }
-	break;
+	if(command == 'n')
+		break;
 
     for(int i = 0; i < N; i++)
         for(int j = 0; j < N; j++)
@@ -182,6 +183,7 @@ int main(void)
             //save_rank(name, ex_time, map_num);
             return 0;}
     }	
+	if(command == 'n')
 	break;
 
     for(int i = 0; i < N; i++)
@@ -230,6 +232,7 @@ int main(void)
             //save_rank(name, ex_time, map_num);
             return 0;}
     }
+	if(command == 'n')
 	break;
 
     for(int i = 0; i < N; i++)
@@ -279,6 +282,7 @@ case 4:
             //save_rank(name, ex_time, map_num);
             return 0;}
     }
+	if(command == 'n')
 	break;
 
     for(int i = 0; i < N; i++)
@@ -328,6 +332,7 @@ case 5:
             //save_rank(name, ex_time, map_num);*/
             return 0;}
     }
+	if(command == 'n')
 	break;
 
     for(int i = 0; i < N; i++)
@@ -655,8 +660,7 @@ int move(char command, char map[][N][N] , char sol[][N][N] , char un[][N][N] , i
             save_file(map, un);
             return 0; //강제종료시 리턴 0
 
-		case 'n':
-			break;
+	
     }
 }
 
