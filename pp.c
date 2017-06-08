@@ -3,6 +3,7 @@
 #include<stdlib.h>
 #include <time.h>
 #define N 30
+void display_rank(char);
 void load_file(char[][N][N],char[][N][N]); //file을 load해주는 함수
 void save_file(char[][N][N], char[][N][N]); // file을 save해주는 함수
 void display(void);  //명령 내용을 보여주는 함수
@@ -24,6 +25,8 @@ int move(char, char[][N][N], char [][N][N], char[][N][N], int, int, int, int, ch
 
 int x, y, z, u; //@의 위치를 나타내기 위한 전역변수
 FILE *sfp; // file을 save하기 위한 포인터 변수
+time_t start_clock =0 , end_clock =0;
+int save_clock=0;
 
 int main(void)
 {
@@ -34,12 +37,14 @@ int main(void)
     char un[5][N][N] = {'\0'};
     char name[20];
     FILE *ifp;
-    time_t start_clock =0 , end_clock =0;
+    time_t stop_clock=0;
     int store_clock = 0;
     char c, command;
     int n = 1, check = 1;
     //ifp = fopen("C:\\Users\\Owner\\Desktop\\2017_1 하정현\\1.txt", "r");
-    ifp = fopen("C:\\cygwin64\\home\\이송희\\cpro\\map.txt", "r");
+    //ifp = fopen("C:\\cygwin64\\home\\이송희\\cpro\\map.txt", "r");
+    //ifp = fopen("C:\\Users\\a\\Desktop\\map.txt","r");
+	ifp = fopen("C:\\cygwin64\\home\\USER\\map.txt","r");
     if(ifp==NULL)printf("no");
     for(k=0;k<5;k++)
     {
@@ -122,16 +127,21 @@ map1:
             printf("%c\n\n",command);
             goto map1;
         }
+		if(command == 'f')
+			stop_clock =time(NULL);
         if(!move(command, map, sol, un, 6, 9, 19, 21, name)) //강제종료 
         {
             return 0;} //강제종료
     }
+	
 
     for(int i = 0; i < N; i++)
         for(int j = 0; j < N; j++)
             printf("%c", map[x][i][j]);
     end_clock = time(NULL); 
     store_clock = (int)(end_clock - start_clock);
+	if(command == 'f')
+		store_clock = save_clock + (int)(end_clock-stop_clock);
     save_rank(name, store_clock, map_num);
     printf("\nMAP1을 성공하셨습니다!\n");
     printf("--------------------------\n\n");
@@ -162,6 +172,8 @@ map1:
             printf("%c\n\n",command);
             goto map1;
         }
+		if(command == 'f')
+			stop_clock =time(NULL);
         if(!move(command, map, sol, un,2, 7, 1, 3, name)){	
             return 0;}
     }
@@ -171,6 +183,8 @@ map1:
             printf("%c", map[x][i][j]);
     end_clock = time(NULL);
     store_clock = (int)(end_clock - start_clock);
+	if(command == 'f')
+		store_clock = save_clock + (int)(end_clock-stop_clock);
     save_rank(name, store_clock, map_num);
 
     printf("\nMAP2을 성공하셨습니다!\n");
@@ -202,6 +216,8 @@ map1:
             printf("%c\n\n",command);
             goto map1;
         }
+		if(command == 'f')
+			stop_clock =time(NULL);
         if(!move(command, map, sol, un, 7, 10, 1, 5, name)){ 
             return 0;}
     }
@@ -211,6 +227,8 @@ map1:
             printf("%c", map[x][i][j]);
     end_clock = time(NULL);
     store_clock = (int)(end_clock - start_clock);
+	if(command == 'f')
+		store_clock = save_clock + (int)(end_clock-stop_clock);
     save_rank(name, store_clock , map_num);
 
     printf("\nMAP3을 성공하셨습니다!\n");
@@ -241,6 +259,8 @@ map1:
             printf("%c\n\n",command);
             goto map1;
         }
+		if(command == 'f')
+			stop_clock =time(NULL);
         if(!move(command, map, sol, un, 2, 7, 17, 21, name)){ 
             return 0;}
     }
@@ -250,6 +270,8 @@ map1:
             printf("%c", map[x][i][j]);
     end_clock = time(NULL);
     store_clock = (int)(end_clock - start_clock);
+	if(command == 'f')
+		store_clock = save_clock + (int)(end_clock-stop_clock);
     save_rank(name, store_clock, map_num);
 
     printf("\nMAP4을 성공하셨습니다!\n");
@@ -282,6 +304,8 @@ map1:
             printf("%c\n\n",command);
             goto map1;
         }
+		if(command == 'f')
+			stop_clock =time(NULL);
         if(!move(command, map, sol, un, 6, 9, 1, 5, name)){
             return 0;}
     }
@@ -291,6 +315,8 @@ map1:
             printf("%c", map[x][i][j]);
     end_clock = time(NULL);
     store_clock = (int)(end_clock - start_clock);
+	if(command == 'f')
+		store_clock = save_clock + (int)(end_clock-stop_clock);
     save_rank(name, end_clock , map_num);
 
     fclose(ifp);
@@ -405,7 +431,8 @@ void display(void){
 void save_file(char map[][N][N],char un[][N][N]){
     int i,j, k;
 
-    sfp = fopen("sokoban","w");
+   // sfp = fopen("C:\\Users\\a\\Desktop\\sokoban.txt","w");
+	sfp = fopen("C:\\cygwin64\\home\\USER\\sokoban.txt","w");
 
     for(i=0;i<N;i++)
         for(j=0;j<N;j++)
@@ -422,12 +449,14 @@ void save_file(char map[][N][N],char un[][N][N]){
     fprintf(sfp, "%d", u);
 
     fclose(sfp);	
+
 }
 void load_file(char map[][N][N],char un[][N][N]){
     int i,j, k;
     char temp;
 
-    sfp = fopen("sokoban","r");
+    //sfp = fopen("C:\\Users\\a\\Desktop\\sokoban.txt","r");
+	sfp = fopen("C:\\cygwin64\\home\\USER\\sokoban.txt","r");
     if(sfp==NULL){
         printf("save한 파일이 존재하지 않습니다.\n");
         exit(1);
@@ -501,11 +530,21 @@ int getch() {
 
 
 int move(char command, char map[][N][N] , char sol[][N][N] , char un[][N][N] , int n, int n_max, int m, int m_max, char name[]){
+    char rank_map;
+
     if(command == 'h' || command == 'l' || command == 'k' || command == 'j') {
     }
     else
         printf("%c", command);
-
+    if(command == 't')
+    {
+	rank_map = getch();
+	printf("%c",rank_map);
+	printf("\n\n");
+	display_rank(rank_map);
+	return 1;
+    }
+	
     printf("\n\n");
 
     switch(command) {
@@ -595,6 +634,7 @@ int move(char command, char map[][N][N] , char sol[][N][N] , char un[][N][N] , i
             return 1;
             //break;
         case 's' : //save file
+			save_clock = (int)(end_clock-start_clock);
             save_file(map,un);
             return 1;
             //break;
@@ -605,10 +645,15 @@ int move(char command, char map[][N][N] , char sol[][N][N] , char un[][N][N] , i
             //break;
 
         case 'e': //game exit and save game
+			save_clock = (int)(end_clock-start_clock);
             save_file(map, un);
             printf("\nSEE YOU %s . . . .\n", name);
             return 0; //강제종료시 리턴 0
-    }
+   		case 'n':
+			start_clock =time(NULL);
+			return 1;
+
+   	}
 }
 
 void save_rank(char name[], int store_clock ,int map_num)
@@ -620,8 +665,9 @@ void save_rank(char name[], int store_clock ,int map_num)
     char tmp_name[20];
     FILE *rank;
     //  rank = fopen("C:\\Users\\Owner\\Desktop\\2017_1 하정현\\ranking.txt", "r");
-    rank = fopen("C:\\cygwin64\\home\\이송희\\cpro\\ranking.txt", "r");
-
+    //rank = fopen("C:\\cygwin64\\home\\이송희\\cpro\\ranking.txt", "r");
+    //rank = fopen("C:\\Users\\a\\Desktop\\ranking.txt","r");
+	rank = fopen("C:\\cygwin64\\home\\USER\\ranking.txt","r");
 
     for(int i = 0 ; i < 5 ; i++){
         fscanf(rank, "%s", temp);
@@ -632,9 +678,12 @@ void save_rank(char name[], int store_clock ,int map_num)
     }
     fclose(rank);
 
-    rank = fopen("C:\\cygwin64\\home\\이송희\\cpro\\ranking.txt", "w");
+    //rank = fopen("C:\\cygwin64\\home\\이송희\\cpro\\ranking.txt", "w");
     //rank = fopen("C:\\Users\\Owner\\Desktop\\2017_1 하정현\\ranking.txt", "w");
-    for(int i = 0 ; i < 20 ; i++){
+    //rank = fopen("C:\\Users\\a\\Desktop\\ranking.txt","w");
+	rank = fopen("C:\\cygwin64\\home\\USER\\ranking.txt","w");
+   
+   	for(int i = 0 ; i < 20 ; i++){
         rank_name[map_num -1][5][i] = name[i];
     }
     rank_time[map_num-1][5] = store_clock;
@@ -661,3 +710,45 @@ void save_rank(char name[], int store_clock ,int map_num)
     }
     fclose(rank);
 }
+
+void display_rank(char rank_map)
+{
+
+        char temp[5][10] = {0};
+        char rank_name[5][6][20] = {0};
+        int rank_time[5][6] = {0};
+
+        FILE *rank;
+    //    rank = fopen("C:\\Users\\a\\Desktop\\ranking.txt","r");
+		rank = fopen("C:\\cygwin64\\home\\USER\\ranking.txt","r");
+
+        for(int i = 0 ; i < 5 ; i++){
+                fscanf(rank, "%s", temp[i]);
+                for(int j = 0 ; j < 5 ; j++){
+                        fscanf(rank,"%s",rank_name[i][j]);
+                        fscanf(rank,"%d", &rank_time[i][j]);
+                }
+        }
+	if(rank_map==' ')
+	{
+	        for(int i = 0 ; i < 5 ; i++){
+                printf("%s \n",temp[i]);
+                	for(int j = 0 ; j < 5 ; j++){
+                        	printf("%10s  ",rank_name[i][j]);
+                        	printf("%5dsec\n", rank_time[i][j]);
+                	}
+        	}
+	}
+	else{
+        	for(int i = rank_map-'0'-1 ; i < rank_map-'0' ; i++){
+                printf("%s \n",temp[i]);
+                	for(int j = 0 ; j < 5 ; j++){
+                        	printf("%10s  ",rank_name[i][j]);
+                        	printf("%5dsec\n", rank_time[i][j]);
+                	}
+		}
+	}
+	printf("\n");
+	fclose(rank);
+}
+	
